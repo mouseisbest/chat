@@ -4,11 +4,18 @@ import (
 	"bufio"
 	"fmt"
 	"net"
+	"os"
 	"sync"
 )
 
+var address string
+
 func main() {
 
+	args := os.Args
+	if len(args) == 2 {
+		address = args[1]
+	}
 	fmt.Println("gnr聊天室---")
 	fmt.Println("...........................................................")
 	test()
@@ -24,8 +31,6 @@ func test() {
 }
 
 func tcpServer() {
-
-	address := "0.0.0.0:37001"
 
 	listen, err := net.Listen("tcp", address)
 	if err != nil {
